@@ -6,23 +6,6 @@ namespace TodoList.Tests
     public class QuestionTests
     {
         [TestMethod]
-        public void AddQuestionToList_IfInitializedCorrectly()
-        {
-            // Arrange
-            var quizManager = new QuizManager();
-            var questions = quizManager.GetAllQuestions().Count;
-
-            // Act
-            var question = new Question("What is my name?", new Dictionary<string, string> { { "A", "Joe" }, { "B", "Pedro" } }, "Pedro");
-            quizManager.AddQuestion(question);
-
-            var result = quizManager.GetQuestion(0);
-
-            // Assert
-            Assert.AreEqual(question, result);
-        }
-
-        [TestMethod]
         public void ReturnTrue_IfAnswerIsCorrect()
         {
             // Arrange

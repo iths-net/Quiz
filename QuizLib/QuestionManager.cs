@@ -1,10 +1,10 @@
 ﻿namespace QuizLib
 {
-    public class QuizManager
+    public class QuestionManager
     {
         private readonly List<Question> _questions;
 
-        public QuizManager()
+        public QuestionManager()
         {
             _questions = [
             new Question("What keyword is used to define a class in C#?",
@@ -58,9 +58,9 @@
             return _questions[index];
         }
 
-        public Question[] GetAllQuestions()
+        public List<Question> GetAllQuestions()
         {
-            return _questions.ToArray();
+            return _questions;
         }
     }
 }
