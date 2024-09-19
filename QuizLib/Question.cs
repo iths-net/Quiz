@@ -17,18 +17,21 @@ namespace QuizLib
 
         public bool CheckAnswer(string input)
         {
+            input = input.ToUpper();
             if (!Options.ContainsKey(input)) throw new ArgumentException("Invalid option selected");
 
-            return string.Equals(Options[input], _answer, StringComparison.OrdinalIgnoreCase);
+            return string.Equals(input, _answer, StringComparison.OrdinalIgnoreCase);
         }
 
         public override string ToString()
         {
             var sb = new StringBuilder();
 
-            sb.Append(QuestionString);
-            sb.AppendLine("Options: ");
-            sb.Append(Options.ToString());
+            sb.AppendLine(QuestionString);
+            foreach (var option in Options)
+            {
+                sb.AppendLine($"{option.Key}. {option.Value}");
+            }
 
             return sb.ToString();
         }

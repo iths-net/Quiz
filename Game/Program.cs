@@ -1,10 +1,14 @@
-﻿namespace Game
+﻿using QuizLib;
+
+namespace Game
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var gm = new GameManager();
+
+            gm.Start();
         }
     }
 }
