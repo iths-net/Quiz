@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoList.Tests", "TodoList.Tests\TodoList.Tests.csproj", "{BF6DD2BD-9947-427A-ABD4-D80F1B0E42B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.Tests", "TodoList.Tests\Quiz.Tests.csproj", "{BF6DD2BD-9947-427A-ABD4-D80F1B0E42B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizLib", "QuizLib\QuizLib.csproj", "{58606FF0-D4EF-4A7B-94AB-7D814C4CB2C7}"
 EndProject

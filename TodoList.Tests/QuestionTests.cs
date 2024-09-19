@@ -1,3 +1,5 @@
+using QuizLib;
+
 namespace TodoList.Tests
 {
     [TestClass]
@@ -20,11 +22,10 @@ namespace TodoList.Tests
         {
             // Arrange
             // Act
-            // Question(question, options[], answer)
             var question = new Question("What is my name?", new Dictionary<string, string> { { "A", "Joe" }, { "B", "Pedro" } }, "Pedro");
 
             // Assert
-            // question.CheckAnswer("A") == true
+            Assert.IsTrue(question.CheckAnswer("B"));
         }
 
         [TestMethod]
@@ -36,7 +37,7 @@ namespace TodoList.Tests
             var question = new Question("What is my name?", new Dictionary<string, string> { { "A", "Joe" }, { "B", "Pedro" } }, "Pedro");
 
             // Assert
-            // question.CheckAnswer("B") == false
+            Assert.IsFalse(question.CheckAnswer("A"));
         }
     }
 }
