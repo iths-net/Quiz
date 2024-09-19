@@ -18,9 +18,7 @@ namespace TodoList.Tests
             Question randomQuestion = questions[new Random().Next(rangeOfList)];
             //Assert
             CollectionAssert.Contains(questions, randomQuestion);//Randomize a question from list
-
         }
-
         [TestMethod]
         public void RemoveQuestionTest()
         {
