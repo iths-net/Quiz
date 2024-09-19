@@ -63,7 +63,12 @@
 
         public List<Question> GetAllQuestions()
         {
-            return new List<Question>(_questions);
+            return _questions;
+        }
+
+        public Question GetRandomQuestion()
+        {
+            return _questions[new Random().Next(_questions.Count() - 1)];
         }
 
         private bool IsIndexValid(int index)

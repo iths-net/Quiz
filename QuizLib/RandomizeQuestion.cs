@@ -2,13 +2,11 @@
 {
     internal class RandomizeQuestion
     {
-        public Question RandomizeAQuestion()
+        public Question RandomizeAQuestion(List<Question> questions)
         {
-            List<Question> questions = new List<Question>();
-            int rangeOfList = questions.Count();
-            Question randomQuestion = questions[new Random().Next(rangeOfList)];
-            return randomQuestion;
+            return questions[new Random().Next(questions.Count() - 1)];
         }
+
         public void RemoveQuestion()
         {
             List<Question> questions = new List<Question>();//List of instances with questions
@@ -16,6 +14,7 @@
             Question randomQuestion = questions[new Random().Next(rangeOfList)];
             questions.Remove(randomQuestion);
         }
+
         public void EndlessMode()
         {
             List<Question> questions = new List<Question>(); 
