@@ -10,7 +10,7 @@ namespace TodoList.Tests
         {
             // Arrange
             var quizManager = new QuizManager();
-            var questions = quizManager.GetAllQuestions().Length;
+            var questions = quizManager.GetAllQuestions().Count;
 
             // Act
             var question = new Question("What is my name?", new Dictionary<string, string> { { "A", "Joe" }, { "B", "Pedro" } }, "Pedro");

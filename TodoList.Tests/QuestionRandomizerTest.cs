@@ -10,7 +10,8 @@ namespace TodoList.Tests
         public void RandomizeQuestionTest()
         {
             //Arrange
-            List<Question> questions = new List<Question>();//List of instances with questions
+            QuizManager quizManager = new QuizManager();
+            List<Question> questions = quizManager.GetAllQuestions();
             int rangeOfList = questions.Count();//Check range of list
 
             //Act
@@ -24,12 +25,13 @@ namespace TodoList.Tests
         public void RemoveQuestionTest()
         {
             //Arrange
-            List<Question> questions = new List<Question>();//List of instances with questions
+            QuizManager quizManager = new QuizManager();
+            List<Question> questions = quizManager.GetAllQuestions();
             int rangeOfList = questions.Count();
 
             Question randomQuestion = questions[new Random().Next(rangeOfList)];
             //Act
-            questions.Remove(randomQuestion);
+            quizManager.RemoveQuestion(randomQuestion);
             //Assert
             CollectionAssert.DoesNotContain(questions, randomQuestion);
         }
@@ -38,22 +40,20 @@ namespace TodoList.Tests
         public void EndlessModeTest()
         {
             //Arrange
-            List<Question> questions = new List<Question>(); //List of instances with questions
-            List<Question> questionsCopy = new List<Question>();//Copy where we will remove questions from.
+            QuizManager quizManager = new QuizManager();
+            List<Question> questions = quizManager.GetAllQuestions();
+            List<Question> questionsCopy = quizManager.GetAllQuestions();
             int rangeOfList = questionsCopy.Count();
             int rangeOfListCopy = rangeOfList; //Create copy of range of list
-
-
-
             //Act
             while (questionsCopy.Count > 0)//While list is not empty, remove questions
             {
-                Question randomQuestion = questionsCopy[new Random().Next(rangeOfList)];
-                questionsCopy.Remove(randomQuestion);
-                rangeOfList--;
+                Question randomQuestion = questionsCopy[new Random().Next(rangeOfListCopy)];
+                quizManager.RemoveQuestion(randomQuestion);
+                rangeOfListCopy--;
                 Assert.AreEqual(rangeOfListCopy, questionsCopy.Count);
             }
-            if (questionsCopy.Count <= 0)//If list reaches 0, restore original list into copy
+            if (questionsCopy.Count == 0)//If list reaches 0, restore original list into copy
             {
                 Assert.AreEqual(0, questionsCopy.Count);
                 questionsCopy = questions;
