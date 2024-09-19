@@ -18,7 +18,7 @@ namespace QuizLib
         {
             for (int i = 0; i < highScoreList.Length; i++)
             {
-                IO.OutPut($"Player name: {highScoreList[i].PlayerName}\nScore: {highScoreList[i].Score}");
+                IO.Output($"Player name: {highScoreList[i].PlayerName}\nScore: {highScoreList[i].Score}");
             }
         }
 
@@ -33,9 +33,9 @@ namespace QuizLib
             {
                 if (playerScore > highScoreList[i].Score)
                 {
-                    IO.OutPut("Congratulations! You've gotten a spot on the high score board!");
-                    IO.OutPutShort("What is your name: ");
-                    string playerName = IO.InputString();
+                    IO.Output("Congratulations! You've gotten a spot on the high score board!");
+                    IO.Output("What is your name: ");
+                    string playerName = IO.Input<string>();
                     Player newPlayer = new Player(playerName, playerScore);
                     HighScoreManager.highScoreList[i] = newPlayer;
                     return;
