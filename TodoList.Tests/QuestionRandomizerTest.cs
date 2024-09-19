@@ -14,7 +14,7 @@ namespace TodoList.Tests
             int rangeOfList = questions.Count();//Check range of list
 
             //Act
-            string randomQuestion = questions[new Random().Next(rangeOfList)];
+            Question randomQuestion = questions[new Random().Next(rangeOfList)];
             //Assert
             CollectionAssert.Contains(questions, randomQuestion);//Randomize a question from list
 
@@ -27,7 +27,7 @@ namespace TodoList.Tests
             List<Question> questions = new List<Question>();//List of instances with questions
             int rangeOfList = questions.Count();
 
-            string randomQuestion = questions[new Random().Next(rangeOfList)];
+            Question randomQuestion = questions[new Random().Next(rangeOfList)];
             //Act
             questions.Remove(randomQuestion);
             //Assert
@@ -48,7 +48,7 @@ namespace TodoList.Tests
             //Act
             while (questionsCopy.Count > 0)//While list is not empty, remove questions
             {
-                string randomQuestion = questionsCopy[new Random().Next(rangeOfList)];
+                Question randomQuestion = questionsCopy[new Random().Next(rangeOfList)];
                 questionsCopy.Remove(randomQuestion);
                 rangeOfList--;
                 Assert.AreEqual(rangeOfListCopy, questionsCopy.Count);
