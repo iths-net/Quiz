@@ -1,61 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Classes
+﻿namespace Classes
 {
     public static class IO
     {
-        public static string InputString()
+        public static T Input<T>()
         {
-            string response = Console.ReadLine() ?? "";
-            return response;
-        }
-        public static char InputChar()
-        {
-            char response;
-            while (!char.TryParse(Console.ReadLine(), out response))
-            {
-                Console.Write("Try again: ");
-            }
+            var userInput = Console.ReadLine() ?? string.Empty;
 
-            return response;
-        }
-        public static int InputInt()
-        {
-            int response;
-
-            while (!int.TryParse(InputString(), out response))
+            try
             {
-                Console.Write("Try again: ");
+                var value = (T)Convert.ChangeType(userInput, typeof(T));
+                return value;
+
             }
-            return response;
+            catch (Exception)
+            {
+                throw new FormatException($"The input '{userInput} is not in a correct format for type {typeof(T).Name}.");
+            }
         }
-        public static void OutPut(string msg)
+
+        public static void Output<T>(T msg)
         {
-            Console.WriteLine(msg);
-        }
-        public static void OutPutShort(string msg)
-        {
-            Console.Write(msg);
-        }
-        public static void OutPut(int number)
-        {
-            Console.WriteLine(number);
-        }
-        public static void OutPutShort(int number)
-        {
-            Console.Write(number);
-        }
-        public static void OutPut(char msg)
-        {
-            Console.WriteLine(msg);
-        }
-        public static void OutPutShort(char msg)
-        {
-            Console.Write(msg);
+            if (msg == null) return;
+            Console.WriteLine(msg.ToString());
         }
     }
 }
