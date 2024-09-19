@@ -18,6 +18,9 @@ namespace QuizLib
         private State _state;
         private int _chances;
 
+        public State State { get => _state; }
+        public int Chances { get => _chances; }
+
         public GameManager()
         {
             _questionManager = new QuestionManager();
@@ -91,6 +94,11 @@ namespace QuizLib
         {
             Console.WriteLine("GAME OVER");
             Console.ReadLine();
+        }
+
+        public void Stop()
+        {
+            _state = State.Exiting;
         }
 
     }
