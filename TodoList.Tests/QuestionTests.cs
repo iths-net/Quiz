@@ -10,13 +10,16 @@ namespace TodoList.Tests
         {
             // Arrange
             var quizManager = new QuizManager();
+            var questions = quizManager.GetAllQuestions().Length;
 
             // Act
             var question = new Question("What is my name?", new Dictionary<string, string> { { "A", "Joe" }, { "B", "Pedro" } }, "Pedro");
             quizManager.AddQuestion(question);
 
+            var result = quizManager.GetQuestion(0);
+
             // Assert
-            
+            Assert.AreEqual(question, result);
         }
 
         [TestMethod]

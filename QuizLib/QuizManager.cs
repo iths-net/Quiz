@@ -57,5 +57,10 @@
         {
             return _questions[index];
         }
+
+        public Question[] GetAllQuestions()
+        {
+            return _questions.ToArray();
+        }
     }
 }
