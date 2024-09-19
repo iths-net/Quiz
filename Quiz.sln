@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.Tests", "TodoList.Tests\Quiz.Tests.csproj", "{BF6DD2BD-9947-427A-ABD4-D80F1B0E42B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.Tests", "TodoList.Tests\Quiz.Tests.csproj", "{BF6DD2BD-9947-427A-ABD4-D80F1B0E42B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizLib", "QuizLib\QuizLib.csproj", "{58606FF0-D4EF-4A7B-94AB-7D814C4CB2C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizLib", "QuizLib\QuizLib.csproj", "{58606FF0-D4EF-4A7B-94AB-7D814C4CB2C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{77BBF47D-B2F0-4835-A5B2-97A661133AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{58606FF0-D4EF-4A7B-94AB-7D814C4CB2C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58606FF0-D4EF-4A7B-94AB-7D814C4CB2C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58606FF0-D4EF-4A7B-94AB-7D814C4CB2C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77BBF47D-B2F0-4835-A5B2-97A661133AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77BBF47D-B2F0-4835-A5B2-97A661133AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77BBF47D-B2F0-4835-A5B2-97A661133AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77BBF47D-B2F0-4835-A5B2-97A661133AD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

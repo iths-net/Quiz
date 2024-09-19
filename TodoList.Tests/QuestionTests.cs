@@ -9,12 +9,14 @@ namespace TodoList.Tests
         public void AddQuestionToList_IfInitializedCorrectly()
         {
             // Arrange
+            var quizManager = new QuizManager();
+
             // Act
-            // Question(question, options[], answer)
             var question = new Question("What is my name?", new Dictionary<string, string> { { "A", "Joe" }, { "B", "Pedro" } }, "Pedro");
+            quizManager.AddQuestion(question);
 
             // Assert
-            // Gamemanager list contains question?
+            
         }
 
         [TestMethod]

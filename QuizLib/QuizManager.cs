@@ -6,7 +6,7 @@
 
         public QuizManager()
         {
-            
+            _questions = [];
         }
 
         public void AddQuestion(Question question)
