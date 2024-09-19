@@ -50,17 +50,25 @@
 
         public void RemoveQuestion(int index)
         {
+            if (!IsIndexValid(index)) throw new IndexOutOfRangeException("Index out of range");
+
             _questions.Remove(_questions[index]);
         }
 
         public Question GetQuestion(int index)
         {
+            if (!IsIndexValid(index)) throw new IndexOutOfRangeException("Index out of range");
             return _questions[index];
         }
 
         public List<Question> GetAllQuestions()
         {
-            return _questions;
+            return new List<Question>(_questions);
+        }
+
+        private bool IsIndexValid(int index)
+        {
+            return index >= 0 && index < _questions.Count;
         }
     }
 }
