@@ -10,7 +10,7 @@ namespace TodoList.Tests
         public void RandomizeQuestionTest()
         {
             //Arrange
-            QuizManager quizManager = new QuizManager();
+            QuestionManager quizManager = new QuestionManager();
             List<Question> questions = quizManager.GetAllQuestions();
             int rangeOfList = questions.Count();//Check range of list
 
@@ -25,7 +25,7 @@ namespace TodoList.Tests
         public void RemoveQuestionTest()
         {
             //Arrange
-            QuizManager quizManager = new QuizManager();
+            QuestionManager quizManager = new QuestionManager();
             List<Question> questions = quizManager.GetAllQuestions();
             int rangeOfList = questions.Count();
 
@@ -40,7 +40,7 @@ namespace TodoList.Tests
         public void EndlessModeTest()
         {
             //Arrange
-            QuizManager quizManager = new QuizManager();
+            QuestionManager quizManager = new QuestionManager();
             List<Question> questions = quizManager.GetAllQuestions();
             List<Question> questionsCopy = quizManager.GetAllQuestions();
             int rangeOfList = questionsCopy.Count();
