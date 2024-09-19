@@ -1,6 +1,6 @@
 ﻿namespace QuizLib
 {
-    internal class RandomizeQuestion
+    public class RandomizeQuestion
     {
         public Question RandomizeAQuestion()
         {
