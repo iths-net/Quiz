@@ -1,4 +1,6 @@
-﻿namespace QuizLib
+﻿using Classes;
+
+namespace QuizLib
 {
     public enum State
     {
@@ -12,7 +14,6 @@
     {
         private readonly QuestionManager _questionManager;
         private readonly List<Question> _questions;
-        //private readonly IoProvider _ioProvider;
 
         private State _state;
         private int _chances;
@@ -64,7 +65,7 @@
             Console.Clear();
             Question question = _questionManager.GetRandomQuestion();
             Console.WriteLine(question.ToString());
-            var userInput = Console.ReadLine() ?? string.Empty;
+            var userInput = IO.Input<string>();
 
             var result = question.CheckAnswer(userInput);
             Console.WriteLine("Correct: " + result);
