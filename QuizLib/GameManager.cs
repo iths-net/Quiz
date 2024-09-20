@@ -6,7 +6,7 @@ namespace QuizLib
     {
         StartScreen,
         Playing,
-        Gameover,
+        GameOver,
         Exiting,
     }
 
@@ -42,8 +42,8 @@ namespace QuizLib
                     case State.Playing:
                         Playing();
                         break;
-                    case State.Gameover:
-                        Gameover();
+                    case State.GameOver:
+                        GameOver();
                         break;
                     case State.Exiting:
                         break;
@@ -59,7 +59,7 @@ namespace QuizLib
             _state = State.Playing;
 
             Console.WriteLine("Welcome to the Quiz Game");
-            Console.WriteLine("Press any key to start..");
+            Console.WriteLine("Press enter to start..");
             Console.ReadLine();
         }
 
@@ -86,11 +86,11 @@ namespace QuizLib
 
             if (_chances <= 0)
             {
-                _state = State.Gameover;
+                _state = State.GameOver;
             }
         }
 
-        private void Gameover()
+        private void GameOver()
         {
             Console.WriteLine("GAME OVER");
             Console.ReadLine();
