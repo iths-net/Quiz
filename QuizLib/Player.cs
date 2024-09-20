@@ -9,12 +9,17 @@ namespace QuizLib
     public class Player
     {
         public string PlayerName { get; set; }
-        public int Score { get; set; }
+        public int Score { get; private set; }
 
-        public Player(string playerName, int playerScore)
+        public Player(string playerName)
         {
             PlayerName = playerName;
-            Score = playerScore;
+            Score = 0;
+        }
+
+        public void AddScore(int scoreToAdd)
+        {
+            Score += scoreToAdd;
         }
     }
 }
