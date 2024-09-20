@@ -17,6 +17,12 @@ namespace QuizLib
             Score = 0;
         }
 
+        public Player()
+        {
+            PlayerName = "Empty";
+            Score = 0;
+        }
+
         public void AddScore(int scoreToAdd)
         {
             Score += scoreToAdd;
