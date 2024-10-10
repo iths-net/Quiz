@@ -23,5 +23,11 @@
             if (msg == null) return;
             Console.WriteLine(msg.ToString());
         }
+
+        public static void Output(string? msg)
+        {
+            if (msg == null) return;
+            Console.WriteLine(msg);
+        }
     }
 }

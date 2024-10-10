@@ -1,105 +1,118 @@
 ﻿using Classes;
 
-namespace QuizLib
+namespace QuizLib;
+
+public enum State
 {
-    public enum State
+    StartScreen,
+    Playing,
+    GameOver,
+    Exiting
+}
+
+public class GameManager
+{
+    private readonly QuestionManager _questionManager;
+    private readonly List<Question> _questions;
+    private Player _player;
+    private HighScoreManager _highScoreManager;
+
+    public GameManager()
     {
-        StartScreen,
-        Playing,
-        Gameover,
-        Exiting,
+        _questionManager = new QuestionManager();
+        _questions = _questionManager.GetAllQuestions();
+        
+        _highScoreManager = new HighScoreManager();
+
+        State = State.StartScreen;
+        Chances = 3;
     }
 
-    public class GameManager
+    public State State { get; private set; }
+
+    public int Chances { get; private set; }
+
+    public void Start()
     {
-        private readonly QuestionManager _questionManager;
-        private readonly List<Question> _questions;
-
-        private State _state;
-        private int _chances;
-
-        public State State { get => _state; }
-        public int Chances { get => _chances; }
-
-        public GameManager()
-        {
-            _questionManager = new QuestionManager();
-            _questions = _questionManager.GetAllQuestions();
-
-            _state = State.StartScreen;
-            _chances = 3;
-        }
-
-        public void Start()
-        {
-            while (_state != State.Exiting)
+        while (State != State.Exiting)
+            switch (State)
             {
-                switch (_state)
-                {
-                    case State.StartScreen:
-                        StartScreen();
-                        break;
-                    case State.Playing:
-                        Playing();
-                        break;
-                    case State.Gameover:
-                        Gameover();
-                        break;
-                    case State.Exiting:
-                        break;
-                    default:
-                        break;
-                }
+                case State.StartScreen:
+                    StartScreen();
+                    break;
+                case State.Playing:
+                    Playing();
+                    break;
+                case State.GameOver:
+                    GameOver();
+                    break;
+                case State.Exiting:
+                    break;
             }
-        }
+    }
 
 
-        private void StartScreen()
+    private void StartScreen()
+    {
+        State = State.Playing;
+
+        Console.WriteLine("Welcome to the Quiz Game");
+        Console.WriteLine("Enter your name: ");
+        var name = Console.ReadLine();
+        _player = new Player(name);
+        Console.WriteLine("Press enter to start..");
+        Console.ReadLine();
+    }
+
+    private void Playing()
+    {
+        Console.Clear();
+        var question = _questionManager.GetRandomQuestion();
+        Console.WriteLine(question.ToString());
+        var userInput = IO.Input<string>();
+
+        var result = question.CheckAnswer(userInput);
+        Console.WriteLine("Correct: " + result);
+
+        HandleResult(result);
+
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadLine();
+    }
+
+    private void HandleResult(bool correct)
+    {
+        const int pointsPerCorrectAnswer = 5;
+        // Handle result ie reduce chances, gameover, etc
+        Chances--;
+
+        if (Chances <= 0) State = State.GameOver;
+
+        if (correct) _player.AddScore(pointsPerCorrectAnswer);
+    }
+
+    private void GameOver()
+    {
+        Console.WriteLine("GAME OVER");
+
+        if (_highScoreManager.HasHighScore(_player))
         {
-            _state = State.Playing;
-
-            Console.WriteLine("Welcome to the Quiz Game");
-            Console.WriteLine("Press any key to start..");
-            Console.ReadLine();
+            _highScoreManager.AddHighScoreToList(_player);
+            Console.WriteLine("Congratulations! You made the high score list!");
+            IO.Output(_highScoreManager.ToString());
         }
-
-        private void Playing()
+        else
         {
-            Console.Clear();
-            Question question = _questionManager.GetRandomQuestion();
-            Console.WriteLine(question.ToString());
-            var userInput = IO.Input<string>();
-
-            var result = question.CheckAnswer(userInput);
-            Console.WriteLine("Correct: " + result);
-
-            HandleResult(result);
-
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadLine();
+            IO.Output("You did not make the high score list");
+            IO.Output(_highScoreManager.ToString());
+            Console.WriteLine($"Score: {_player.Score}");
         }
 
-        private void HandleResult(bool correct)
-        {
-            // Handle result ie reduce chances, gameover, etc
-            _chances--;
+        Console.ReadLine();
+    }
 
-            if (_chances <= 0)
-            {
-                _state = State.Gameover;
-            }
-        }
-
-        private void Gameover()
-        {
-            Console.WriteLine("GAME OVER");
-            Console.ReadLine();
-        }
-
-        public void Stop()
-        {
-            _state = State.Exiting;
-        }
-
+    public void Stop()
+    {
+        State = State.Exiting;
     }
 }

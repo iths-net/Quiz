@@ -1,48 +1,49 @@
-﻿using System;
+﻿using System.Text;
 using Classes;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace QuizLib
+namespace QuizLib;
+
+public class HighScoreManager
 {
-    public class HighScoreManager
-    {
-        public static Player[] highScoreList = new Player[10];
-        public HighScoreManager()
-        {
-            
-        }
-        public static void ShowHighScores()
-        {
-            for (int i = 0; i < highScoreList.Length; i++)
-            {
-                IO.Output($"Player name: {highScoreList[i].PlayerName}\nScore: {highScoreList[i].Score}");
-            }
-        }
+    private const int HighScoreCount = 5;
+    public List<Player> HighScoreList;
 
-        public static void SortHighScores()
-        {
-            Array.Sort(highScoreList);
-            Array.Reverse(highScoreList);
-        }
-        public static void AddHighScoreToList(int playerScore)
-        {
-            for (int i = 0; i < highScoreList.Length; i++)
+    public HighScoreManager()
+    {
+        HighScoreList = new List<Player>();
+        for (var i = 0; i < HighScoreCount; i++) HighScoreList.Add(new Player());
+    }
+
+    public void ShowHighScores()
+    {
+        for (var i = 0; i < HighScoreList.Capacity; i++)
+            IO.Output($"Player name: {HighScoreList[i].PlayerName}\nScore: {HighScoreList[i].Score}");
+    }
+
+    public void AddHighScoreToList(Player player)
+    {
+        for (var i = 0; i < HighScoreList.Capacity; i++)
+            if (player.Score > HighScoreList[i].Score)
             {
-                if (playerScore > highScoreList[i].Score)
-                {
-                    IO.Output("Congratulations! You've gotten a spot on the high score board!");
-                    IO.Output("What is your name: ");
-                    string playerName = IO.Input<string>();
-                    Player newPlayer = new Player(playerName, playerScore);
-                    HighScoreManager.highScoreList[i] = newPlayer;
-                    return;
-                    
-                }
+                HighScoreList.Insert(i, player);
+                return;
             }
-            
-        }
+    }
+
+    public bool HasHighScore(Player player)
+    {
+        for (var i = 0; i < HighScoreList.Capacity; i++)
+            if (player.Score > HighScoreList[i].Score)
+                return true;
+        return false;
+    }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new();
+
+        foreach (var player in HighScoreList) sb.AppendLine($"{player.PlayerName}: {player.Score}");
+
+        return sb.ToString();
     }
 }
